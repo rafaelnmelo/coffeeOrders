@@ -13,6 +13,7 @@
 		75AFA24E2D36AE1400AECEFB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75AFA24D2D36AE1400AECEFB /* Preview Assets.xcassets */; };
 		75AFA2582D36AFE500AECEFB /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AFA2572D36AFE500AECEFB /* Webservice.swift */; };
 		75AFA25C2D36B04200AECEFB /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AFA25B2D36B04200AECEFB /* Order.swift */; };
+		75D8E9C02D39474C008FD5C5 /* CoffeeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D8E9BF2D39474C008FD5C5 /* CoffeeModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		75AFA24D2D36AE1400AECEFB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		75AFA2572D36AFE500AECEFB /* Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
 		75AFA25B2D36B04200AECEFB /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		75D8E9BF2D39474C008FD5C5 /* CoffeeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				75AFA25B2D36B04200AECEFB /* Order.swift */,
+				75D8E9BF2D39474C008FD5C5 /* CoffeeModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75AFA2492D36AE1200AECEFB /* ContentView.swift in Sources */,
+				75D8E9C02D39474C008FD5C5 /* CoffeeModel.swift in Sources */,
 				75AFA25C2D36B04200AECEFB /* Order.swift in Sources */,
 				75AFA2582D36AFE500AECEFB /* Webservice.swift in Sources */,
 				75AFA2472D36AE1200AECEFB /* CoffeeOrdersApp.swift in Sources */,
