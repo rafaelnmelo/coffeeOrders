@@ -13,10 +13,14 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            List(model.orders) { order in
-                OrderCellView(order: order)
-            }.task {
-                await populateOrders()
+            if model.orders.isEmpty {
+                Text("Sem pedidos disponíveis").accessibilityIdentifier("noOrdersText")
+            } else {
+                List(model.orders) { order in
+                    OrderCellView(order: order)
+                }.task {
+                    await populateOrders()
+                }
             }
         }
         .padding()
