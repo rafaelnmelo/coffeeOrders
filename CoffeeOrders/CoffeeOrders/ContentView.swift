@@ -18,8 +18,10 @@ struct ContentView: View {
                 if model.orders.isEmpty {
                     Text("Sem pedidos!").accessibilityIdentifier("noOrdersText")
                 } else {
-                    List(model.orders) { order in
-                        OrderCellView(order: order)
+                    List {
+                        ForEach(model.orders) { order in
+                            OrderCellView(order: order)
+                        }.onDelete(perform: deleteOrder)
                     }
                 }
             }.task {
@@ -47,6 +49,21 @@ extension ContentView {
             try await model.populateOrders()
         } catch {
             print(error)
+        }
+    }
+    
+    private func deleteOrder(_ indexSet: IndexSet) {
+        indexSet.forEach { index in
+            let order = model.orders[index]
+            guard let orderID = order.id else {return}
+            
+            Task {
+                do {
+                    try await model.deleteOrder(orderID)
+                } catch {
+                    print(error)
+                }
+            }
         }
     }
 }
