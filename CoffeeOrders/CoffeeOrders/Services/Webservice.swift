@@ -7,12 +7,14 @@
 
 import Foundation
 
+//MARK: - NETWORK ERROR -
 enum NetworkError: Error {
     case badRequest
     case decodingError
     case badUrl
 }
 
+//MARK: - CLASS -
 class Webservice {
     
     private var baseURL: URL
@@ -33,6 +35,7 @@ class Webservice {
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.debug()
         
         let (data, response) = try await URLSession.shared.data(for: request)
         
@@ -40,6 +43,8 @@ class Webservice {
               httpResponse.statusCode == 200 else {
             throw NetworkError.badRequest
         }
+        
+        httpResponse.debug(data: data)
         
         guard let updatedOrder = try? JSONDecoder().decode(Order.self, from: data) else {
             throw NetworkError.decodingError
@@ -55,12 +60,15 @@ class Webservice {
         
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
+        request.debug()
         
         let (data, response) = try await URLSession.shared.data(for: request)
         guard let httpResponse = response as? HTTPURLResponse,
               httpResponse.statusCode == 200 else {
             throw NetworkError.badRequest
         }
+        
+        httpResponse.debug(data: data)
         
         guard let deletedOrder = try? JSONDecoder().decode(Order.self, from: data) else {
             throw NetworkError.decodingError
@@ -79,12 +87,16 @@ class Webservice {
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try JSONEncoder().encode(order)
+        request.debug()
         
         let (data, response) = try await URLSession.shared.data(for: request)
+    
         guard let httpResponse = response as? HTTPURLResponse,
               httpResponse.statusCode == 200 else {
             throw NetworkError.badRequest
         }
+        
+        httpResponse.debug(data: data)
         
         guard let newOrder = try? JSONDecoder().decode(Order.self, from: data) else {
             throw NetworkError.decodingError
@@ -99,11 +111,16 @@ class Webservice {
             throw NetworkError.badUrl
         }
         
-        let (data, response) = try await URLSession.shared.data(from: url)
+        let request = URLRequest(url: url)
+        request.debug()
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
         guard let httpResponse = response as? HTTPURLResponse,
               httpResponse.statusCode == 200 else {
             throw NetworkError.badRequest
         }
+        
+        httpResponse.debug(data: data)
         
         guard let orders = try? JSONDecoder().decode([Order].self, from: data) else {
             throw NetworkError.decodingError

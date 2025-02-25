@@ -24,9 +24,9 @@ extension URLRequest {
         }
         
         // Exibe o corpo da requisição
-        if let body = String(data: self.httpBody ?? Data(), encoding: .utf8) {
+        if let httpBody = self.httpBody {
             print("Parametros")
-            print(body, terminator: "\n\n")
+            print(String(data: httpBody, encoding: .utf8)!, terminator: "\n\n")
         }
 
         print("--------------------------------------------------", terminator: "\n\n")
