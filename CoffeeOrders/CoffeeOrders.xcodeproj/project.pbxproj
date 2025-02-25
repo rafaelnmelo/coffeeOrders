@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		757B4C9F2D6DEF250041B37E /* OrderDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757B4C9E2D6DEF250041B37E /* OrderDetailView.swift */; };
+		757B4CA12D6E09480041B37E /* HTTPURLResponse+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757B4CA02D6E09480041B37E /* HTTPURLResponse+Extensions.swift */; };
+		757B4CA32D6E097C0041B37E /* URLRequest+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 757B4CA22D6E097C0041B37E /* URLRequest+Extensions.swift */; };
 		75AFA2472D36AE1200AECEFB /* CoffeeOrdersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AFA2462D36AE1200AECEFB /* CoffeeOrdersApp.swift */; };
 		75AFA2492D36AE1200AECEFB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75AFA2482D36AE1200AECEFB /* ContentView.swift */; };
 		75AFA24B2D36AE1400AECEFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75AFA24A2D36AE1400AECEFB /* Assets.xcassets */; };
@@ -34,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		757B4C9E2D6DEF250041B37E /* OrderDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailView.swift; sourceTree = "<group>"; };
+		757B4CA02D6E09480041B37E /* HTTPURLResponse+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HTTPURLResponse+Extensions.swift"; sourceTree = "<group>"; };
+		757B4CA22D6E097C0041B37E /* URLRequest+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extensions.swift"; sourceTree = "<group>"; };
 		75AFA2432D36AE1200AECEFB /* CoffeeOrders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoffeeOrders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75AFA2462D36AE1200AECEFB /* CoffeeOrdersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoffeeOrdersApp.swift; sourceTree = "<group>"; };
 		75AFA2482D36AE1200AECEFB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -142,6 +148,7 @@
 			children = (
 				75D8E9D92D3970A4008FD5C5 /* AddCoffeeView.swift */,
 				75D8E9C22D39507D008FD5C5 /* OrderCellView.swift */,
+				757B4C9E2D6DEF250041B37E /* OrderDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -152,6 +159,8 @@
 				75D8E9C52D3950B0008FD5C5 /* NumberFormatter+Extensions.swift */,
 				75D8E9DB2D397227008FD5C5 /* View+Extensions.swift */,
 				75D8E9DD2D397600008FD5C5 /* String+Extensions.swift */,
+				757B4CA02D6E09480041B37E /* HTTPURLResponse+Extensions.swift */,
+				757B4CA22D6E097C0041B37E /* URLRequest+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -274,6 +283,7 @@
 			files = (
 				75AFA2492D36AE1200AECEFB /* ContentView.swift in Sources */,
 				75D8E9DE2D397600008FD5C5 /* String+Extensions.swift in Sources */,
+				757B4C9F2D6DEF250041B37E /* OrderDetailView.swift in Sources */,
 				75D8E9C02D39474C008FD5C5 /* CoffeeModel.swift in Sources */,
 				75D8E9C62D3950B0008FD5C5 /* NumberFormatter+Extensions.swift in Sources */,
 				75AFA25C2D36B04200AECEFB /* Order.swift in Sources */,
@@ -282,6 +292,8 @@
 				75AFA2472D36AE1200AECEFB /* CoffeeOrdersApp.swift in Sources */,
 				75D8E9C92D3963CD008FD5C5 /* AppEnvironment.swift in Sources */,
 				75D8E9DC2D397227008FD5C5 /* View+Extensions.swift in Sources */,
+				757B4CA32D6E097C0041B37E /* URLRequest+Extensions.swift in Sources */,
+				757B4CA12D6E09480041B37E /* HTTPURLResponse+Extensions.swift in Sources */,
 				75D8E9C32D39507D008FD5C5 /* OrderCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
