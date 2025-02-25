@@ -11,12 +11,14 @@ enum Endpoints {
     case allOrders
     case placeOrder
     case deleteOrder(Int)
+    case updateOrder(Int)
     
     var path: String {
         switch self {
         case .allOrders: "/coffeeorders"
         case .placeOrder: "/coffeeorders"
-        case .deleteOrder: "/coffeeorders"
+        case .deleteOrder(_): "/coffeeorders"
+        case .updateOrder(_): "/coffeeorders"
         }
     }
 }
