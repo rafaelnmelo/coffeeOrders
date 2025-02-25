@@ -15,6 +15,20 @@ class CoffeeModel: ObservableObject {
     
     init(webservice: Webservice) {
         self.webservice = webservice
+        //FIXME: Mock
+        orders.append(Order(id: 1,
+                            name: "Rafan",
+                            coffeeName: "Expresso",
+                            total: 4.5,
+                            size: CoffeeSize.medium))
+    }
+    
+    func orderByID(_ id: Int) -> Order? {
+        guard let index = orders.firstIndex(where: { $0.id == id }) else {
+            return nil
+        }
+        
+        return orders[index]
     }
     
     func populateOrders() async throws {
