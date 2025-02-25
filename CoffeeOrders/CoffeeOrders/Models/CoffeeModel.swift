@@ -48,11 +48,12 @@ class CoffeeModel: ObservableObject {
     }
     
     func updateOrder(_ order: Order) async throws {
-        let updatedOrder = try await webservice.updateOrder(order)
-        guard let index = orders.firstIndex(where: { $0.id == updatedOrder.id }) else {
-            throw CoffeorderError.invalidOrderID
-        }
-        orders[index] = updatedOrder
+        //FIXME: Remover mock
+        //        let updatedOrder = try await webservice.updateOrder(order)
+        //        guard let index = orders.firstIndex(where: { $0.id == updatedOrder.id }) else {
+        //            throw CoffeorderError.invalidOrderID
+        //        }
+        orders[0] = order
     }
     
 }
