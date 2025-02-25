@@ -35,6 +35,7 @@ class Webservice {
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try JSONEncoder().encode(order)
         request.debug()
         
         let (data, response) = try await URLSession.shared.data(for: request)
