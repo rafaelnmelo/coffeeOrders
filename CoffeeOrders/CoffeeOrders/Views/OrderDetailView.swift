@@ -7,11 +7,14 @@
 
 import SwiftUI
 
+//MARK: - CLASS
 struct OrderDetailView: View {
     
-    let orderID: Int
     @EnvironmentObject private var model: CoffeeModel
     @State private var isPresented = false
+    @Environment(\.dismiss) private var dismiss
+    
+    let orderID: Int
     
     var body: some View {
         VStack {
@@ -29,7 +32,9 @@ struct OrderDetailView: View {
                     HStack {
                         Spacer()
                         Button("Apagar", role: .destructive) {
-                            
+                            Task {
+                                await deleteOrder()
+                            }
                         }
                         Button("Modificar") {
                             isPresented = true
@@ -38,7 +43,7 @@ struct OrderDetailView: View {
                     }
                     
                 }.sheet(isPresented: $isPresented, content: {
-                    AddCoffeeView()
+                    AddCoffeeView(order: order)
                 })
             }
             Spacer()
@@ -47,6 +52,19 @@ struct OrderDetailView: View {
     
 }
 
+//MARK: - FUNCTIONS
+extension OrderDetailView {
+    private func deleteOrder() async {
+        do {
+            try await model.deleteOrder(orderID)
+            dismiss()
+        } catch {
+            print(error)
+        }
+    }
+}
+
+//MARK: - PREVIEW
 #Preview {
     var config = Configuration()
     return OrderDetailView(orderID: 1).environmentObject(CoffeeModel(webservice: Webservice(baseURL: config.environment.baseURL)))

@@ -7,7 +7,9 @@
 
 import SwiftUI
 
+//MARK: - CLASS
 struct AddCoffeeView: View {
+    
     @State private var name: String = ""
     @State private var coffeeName: String = ""
     @State private var price: String = ""
@@ -17,17 +19,7 @@ struct AddCoffeeView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var model: CoffeeModel
     
-    private func placeOrder() async {
-        let order = Order(name: name,coffeeName: coffeeName,
-                          total: Double(price) ?? 0, size: coffeeSize)
-        
-        do {
-            try await model.placeOrder(order)
-            dismiss()
-        } catch {
-            print(error)
-        }
-    }
+    var order: Order? = nil
     
     var body: some View {
         NavigationStack {
@@ -46,10 +38,10 @@ struct AddCoffeeView: View {
                 
                 
                 TextField("Preço", text: $price)
-                        .accessibilityIdentifier("price")
+                    .accessibilityIdentifier("price")
                 Text(errors.price).visible(!errors.price.isEmpty)
-                                  .font(.caption)
-                                  .foregroundStyle(.red)
+                    .font(.caption)
+                    .foregroundStyle(.red)
                 
                 
                 Picker("Tamanho", selection: $coffeeSize) {
@@ -59,18 +51,70 @@ struct AddCoffeeView: View {
                     }
                 }.pickerStyle(.segmented)
                 
-                Button("Fazer pedido") {
+                Button(order != nil ? "Atualizar" : "Fazer pedido") {
                     
                     if isValid {
                         Task {
-                            await placeOrder()
+                            await saveOrUpdate()
                         }
                     }
                     
                 }.accessibilityIdentifier("placeOrderButton")
                     .centerHorizontally()
-            }.navigationTitle("Pedir café")
+            }.navigationTitle(order != nil ? "Atualizar pedido" : "Pedir café")
+                .onAppear {
+                    populateExistingOrders()
+                }
         }
+    }
+}
+
+//MARK: - FUNCTIONS
+extension AddCoffeeView {
+    
+    private func placeOrder(_ order: Order) async {
+        do {
+            try await model.placeOrder(order)
+            dismiss()
+        } catch {
+            print(error)
+        }
+    }
+    
+    private func updateOrder(_ editedOrder: Order) async {
+        do {
+            try await model.updateOrder(editedOrder)
+            dismiss()
+        } catch {
+            print(error)
+        }
+    }
+    
+    private func populateExistingOrders() {
+        if let order = order {
+            name = order.name
+            coffeeName = order.coffeeName
+            price = String(order.total)
+            coffeeSize = order.size
+        }
+    }
+    
+    private func saveOrUpdate() async {
+        if let order {
+            var editedOrder = order
+            editedOrder.name = name
+            editedOrder.total = Double(price) ?? 0.0
+            editedOrder.coffeeName = coffeeName
+            editedOrder.size = coffeeSize
+            await updateOrder(editedOrder)
+        } else {
+            let order = Order(name: name,
+                              coffeeName: coffeeName,
+                              total: Double(price) ?? 0.0,
+                              size: coffeeSize)
+            await placeOrder(order)
+        }
+        dismiss()
     }
 }
 
@@ -107,7 +151,7 @@ extension AddCoffeeView {
     }
 }
 
+//MARK: - PREVIEW
 #Preview {
     AddCoffeeView()
 }
-

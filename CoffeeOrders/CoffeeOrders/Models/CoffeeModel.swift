@@ -41,8 +41,10 @@ class CoffeeModel: ObservableObject {
     }
     
     func deleteOrder(_ orderID: Int) async throws {
-        let deleteorder = try await webservice.deleteOrder(orderID: orderID)
-        orders = orders.filter { $0.id != deleteorder.id }
+        //FIXME: Remover mock
+//        let deleteorder = try await webservice.deleteOrder(orderID: orderID)
+//        orders = orders.filter { $0.id != deleteorder.id }
+        orders = []
     }
     
     func updateOrder(_ order: Order) async throws {
